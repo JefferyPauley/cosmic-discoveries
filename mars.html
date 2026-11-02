@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Explore photographs of Mars captured by NASA's robotic rovers.">
+
+    <title>Explore Mars | Cosmic Discoveries</title>
+
+    <!-- Shared website stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+
+<body>
+
+    <!-- ========================================
+         HEADER AND NAVIGATION
+    ========================================= -->
+
+    <header class="site-header">
+
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="logo">
+                Cosmic Discoveries
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apod.html">Astronomy</a></li>
+                <li><a href="mars.html" aria-current="page">Mars</a></li>
+                <li><a href="earth.html">Earth</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ========================================
+         MAIN PAGE CONTENT
+    ========================================= -->
+
+    <main>
+
+        <!-- PAGE INTRODUCTION -->
+
+        <section class="page-intro" aria-labelledby="page-heading">
+
+            <h1 id="page-heading">
+                Explore the Red Planet
+            </h1>
+
+            <p>
+                Journey across Mars through photographs captured
+                by NASA's robotic explorers. Discover the
+                landscapes, rocks, and terrain of another world.
+            </p>
+
+        </section>
+
+
+        <!-- MARS SEARCH FORM -->
+
+        <section class="mars-search" aria-labelledby="search-heading">
+
+            <h2 id="search-heading">
+                Explore Mars Rover Photos
+            </h2>
+
+            <p>
+                Choose a rover and date to explore photographs
+                captured on the surface of Mars.
+            </p>
+
+            
+<form id="mars-search-form">
+
+    <div class="form-group">
+
+        <label for="rover-selection">Choose a Mars rover:</label>
+
+        <select id="rover-selection" name="rover" required>
+            <option value="Curiosity" selected>Curiosity</option>
+            <option value="Perseverance">Perseverance</option>
+            <option value="Opportunity">Opportunity</option>
+            <option value="Spirit">Spirit</option>
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="mars-date">Select a Date</label>
+
+        <input
+            type="date"
+            id="mars-date"
+            name="earth-date"
+            required
+        >
+
+    </div>
+
+    <p class="search-note">
+        Photos are retrieved from NASA's official image library.
+        Choose a rover and date to narrow your search.
+    </p>
+
+    <button type="submit" id="mars-search-button">
+        Search Mars Photos
+    </button>
+
+</form>
+
+
+        </section>
+
+
+        <!-- LOADING AND ERROR MESSAGES -->
+
+        <section class="mars-status" aria-live="polite">
+
+            <p id="mars-loading" hidden>
+                Loading Mars rover photographs...
+            </p>
+
+            <p id="mars-error" hidden>
+                Unable to retrieve Mars photographs.
+                Please try again.
+            </p>
+
+            <p id="mars-no-results" hidden>
+                No photographs were found for this selection.
+                Please try another date.
+            </p>
+
+        </section>
+
+
+        <!-- MARS PHOTO GALLERY -->
+
+        <section class="mars-gallery" aria-labelledby="gallery-heading">
+
+            <div class="section-heading">
+
+                <h2 id="gallery-heading">
+                    Mars Rover Photo Gallery
+                </h2>
+
+                <p>
+                    Explore the surface of Mars through
+                    NASA's rover cameras.
+                </p>
+
+            </div>
+
+
+            <!-- JavaScript will insert photographs here -->
+
+            <div id="mars-photo-grid" class="mars-photo-grid">
+
+                <!-- Example structure for an individual photo card -->
+
+                <article class="mars-photo-card" hidden>
+
+                    <img
+                        class="mars-photo-image"
+                        alt="Photograph captured on the surface of Mars"
+                    >
+
+                    <div class="mars-photo-information">
+
+                        <h3 class="mars-camera-name">
+                            Camera information
+                        </h3>
+
+                        <p class="mars-photo-date">
+                            Date photographed
+                        </p>
+
+                        <p class="mars-rover-name">
+                            Rover information
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <p>
+            &copy; 2026 Cosmic Discoveries.
+            Exploring Our Universe.
+        </p>
+
+    </footer>
+
+
+<script src="assets/js/api.js" defer></script>
+<script src="assets/js/script.js" defer></script>   
+</body>
+</html>

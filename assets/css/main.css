@@ -1,0 +1,708 @@
+/* ========================================
+   COSMIC DISCOVERIES
+   Main Website Stylesheet
+======================================== */
+
+
+/* ----------------------------------------
+   1. RESET AND GLOBAL STYLES
+---------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f8fc;
+    color: #172b4d;
+    line-height: 1.6;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    }
+
+[hidden] {
+    display: none !important;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 3px solid #55aaff;
+    outline-offset: 3px;
+}
+
+
+/* ----------------------------------------
+   2. SHARED COLORS AND PAGE WIDTH
+---------------------------------------- */
+
+:root {
+    --navy: #102a43;
+    --navy-light: #243f5c;
+    --blue: #2878c8;
+    --blue-light: #e4f1ff;
+    --background: #f5f8fc;
+    --white: #ffffff;
+    --text: #334e68;
+    --muted: #627d98;
+    --border: #d9e2ec;
+    --shadow: 0 5px 20px rgba(16, 42, 67, 0.08);
+    --radius: 12px;
+}
+
+main {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 64px;
+}
+
+
+/* ----------------------------------------
+   3. HEADER AND NAVIGATION
+---------------------------------------- */
+
+.site-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 10;
+}
+
+.navbar {
+    width: min(1200px, 90%);
+    min-height: 76px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    color: var(--navy);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+    color: var(--blue);
+}
+
+
+/* ----------------------------------------
+   4. HOMEPAGE HERO SECTION
+---------------------------------------- */
+
+.hero {
+    min-height: 430px;
+    margin-top: 32px;
+    padding: 70px 8%;
+    border-radius: 18px;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--white);
+
+    background:
+        radial-gradient(circle at 75% 45%, rgba(100, 180, 255, 0.45), transparent 8%),
+        radial-gradient(circle at 80% 45%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 68% 25%, rgba(255, 255, 255, 0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 90% 75%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+        linear-gradient(115deg, #071b35, #123c69 60%, #2878a9);
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    max-width: 600px;
+    margin-bottom: 18px;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+.hero p {
+    max-width: 520px;
+    margin-bottom: 28px;
+    color: #e3efff;
+    font-size: 1.1rem;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 7px;
+    background-color: var(--white);
+    color: var(--navy);
+    font-weight: 700;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.hero-button:hover {
+    background-color: var(--blue-light);
+    transform: translateY(-3px);
+}
+
+
+/* ----------------------------------------
+   5. SECTION HEADINGS
+---------------------------------------- */
+
+.section-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.section-heading h2,
+.about h2,
+.page-intro h1 {
+    color: var(--navy);
+}
+
+.section-heading h2,
+.about h2 {
+    margin-bottom: 10px;
+    font-size: 1.9rem;
+}
+
+.section-heading p,
+.page-intro p {
+    color: var(--muted);
+}
+
+
+/* ----------------------------------------
+   6. HOMEPAGE DISCOVERY CARDS
+---------------------------------------- */
+
+.discoveries {
+    padding-top: 24px;
+}
+
+.discovery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.discovery-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.discovery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(16, 42, 67, 0.13);
+}
+
+.card-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Temporary CSS backgrounds until image assets are added. */
+
+.discovery-card:nth-child(1) .card-image {
+    background:
+        radial-gradient(circle at 65% 40%, #f9d78b 0 4%, transparent 5%),
+        radial-gradient(circle at 65% 40%, #7bb8e8 0 15%, transparent 16%),
+        linear-gradient(135deg, #091d3a, #315b8c);
+}
+
+.discovery-card:nth-child(2) .card-image {
+    background:
+        radial-gradient(circle at 70% 35%, #e8a36e 0 10%, transparent 11%),
+        linear-gradient(135deg, #5a2830, #c56e45, #e5b17b);
+}
+
+.discovery-card:nth-child(3) .card-image {
+    background:
+        radial-gradient(ellipse at 45% 55%, #55a879 0 18%, transparent 19%),
+        radial-gradient(ellipse at 65% 35%, #70b5dc 0 22%, transparent 23%),
+        linear-gradient(135deg, #0c4269, #4b9bc3);
+}
+
+.card-content {
+    padding: 23px;
+}
+
+.card-content h3 {
+    margin-bottom: 10px;
+    color: var(--navy);
+    font-size: 1.15rem;
+}
+
+.card-content p {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.card-content a {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.card-content a:hover {
+    text-decoration: underline;
+}
+
+
+/* ----------------------------------------
+   7. ABOUT SECTION
+---------------------------------------- */
+
+.about {
+    padding: 40px;
+    border-radius: var(--radius);
+    background-color: var(--blue-light);
+    text-align: center;
+}
+
+.about p {
+    max-width: 760px;
+    margin: 0 auto;
+    color: var(--text);
+}
+
+
+/* ----------------------------------------
+   8. INNER PAGE INTRODUCTIONS
+---------------------------------------- */
+
+.page-intro {
+    padding: 55px 20px 35px;
+    text-align: center;
+}
+
+.page-intro h1 {
+    margin-bottom: 12px;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.page-intro p {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+/* ----------------------------------------
+   9. SEARCH FORMS
+---------------------------------------- */
+
+.apod-search,
+.mars-search,
+.earth-search {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.apod-search h2,
+.mars-search h2,
+.earth-search h2 {
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-size: 1.4rem;
+}
+
+.apod-search > p,
+.mars-search > p,
+.earth-search > p {
+    margin-bottom: 22px;
+    color: var(--muted);
+}
+
+form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.form-group {
+    flex: 1 1 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    color: var(--navy);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background-color: var(--white);
+    color: var(--text);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--blue);
+    outline: 2px solid rgba(40, 120, 200, 0.15);
+}
+
+form button {
+    min-height: 46px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 7px;
+    background-color: var(--blue);
+    color: var(--white);
+    font-weight: 700;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+form button:hover {
+    background-color: var(--navy);
+    transform: translateY(-2px);
+}
+
+
+/* ----------------------------------------
+   10. LOADING, ERROR AND STATUS MESSAGES
+---------------------------------------- */
+
+.apod-status,
+.mars-status,
+.earth-status {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#apod-loading,
+#mars-loading,
+#earth-loading {
+    color: var(--blue);
+    font-weight: 700;
+}
+
+#apod-error,
+#mars-error,
+#earth-error {
+    color: #b42318;
+    font-weight: 600;
+}
+
+#mars-no-results,
+#earth-no-results {
+    color: var(--muted);
+}
+
+
+/* ----------------------------------------
+   11. APOD FEATURED CONTENT
+---------------------------------------- */
+
+.apod-featured {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: start;
+    gap: 30px;
+    padding: 28px;
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.apod-media {
+    min-width: 0;
+}
+
+.apod-media img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #edf2f7;
+}
+
+#apod-video-container iframe {
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    border-radius: 8px;
+}
+
+.apod-information h2 {
+    margin-bottom: 12px;
+    color: var(--navy);
+    font-size: 1.6rem;
+}
+
+#apod-date-display {
+    margin-bottom: 16px;
+    color: var(--blue);
+    font-weight: 700;
+}
+
+#apod-explanation,
+#apod-credit {
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+
+/* ----------------------------------------
+   12. MARS PHOTO GALLERY
+---------------------------------------- */
+
+.mars-gallery {
+    padding-bottom: 20px;
+}
+
+.mars-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.mars-photo-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.mars-photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background-color: #e8edf2;
+}
+
+.mars-photo-information {
+    padding: 18px;
+}
+
+.mars-photo-information h3 {
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-size: 1.05rem;
+}
+
+.mars-photo-information p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+
+/* ----------------------------------------
+   13. EARTH IMAGE RESULTS
+---------------------------------------- */
+
+.earth-results {
+    padding-bottom: 25px;
+}
+
+.earth-image-container {
+    overflow: hidden;
+    border-radius: var(--radius);
+    background-color: #e8edf2;
+}
+
+.earth-image-container img {
+    width: 100%;
+    max-height: 600px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.earth-image-information {
+    padding: 22px 5px;
+}
+
+.earth-image-information h3 {
+    margin-bottom: 8px;
+    color: var(--navy);
+    font-size: 1.3rem;
+}
+
+.earth-image-information p {
+    margin-top: 5px;
+    color: var(--muted);
+}
+
+
+/* ----------------------------------------
+   14. FOOTER
+---------------------------------------- */
+
+.site-footer {
+    margin-top: 50px;
+    padding: 25px 5%;
+    background-color: var(--navy);
+    color: #e3efff;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+/* ----------------------------------------
+   15. RESPONSIVE DESIGN: TABLETS
+---------------------------------------- */
+
+@media (max-width: 850px) {
+
+    .discovery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mars-photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .apod-featured {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ----------------------------------------
+   16. RESPONSIVE DESIGN: MOBILE
+---------------------------------------- */
+
+@media (max-width: 600px) {
+
+    main {
+        width: 92%;
+    }
+
+    .navbar {
+        padding: 16px 0;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px 20px;
+    }
+
+    .hero {
+        min-height: 360px;
+        margin-top: 20px;
+        padding: 45px 25px;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .discovery-grid,
+    .mars-photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about {
+        padding: 28px 20px;
+    }
+
+    .page-intro {
+        padding: 40px 5px 25px;
+    }
+
+    .apod-search,
+    .mars-search,
+    .earth-search {
+        padding: 22px 18px;
+    }
+
+    form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    .apod-featured {
+        padding: 18px;
+    }
+
+    .apod-information h2 {
+        font-size: 1.35rem;
+    }
+
+}

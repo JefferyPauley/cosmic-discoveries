@@ -1,0 +1,142 @@
+/* ========================================
+   COSMIC DISCOVERIES
+   Animation Stylesheet
+======================================== */
+
+
+/* ----------------------------------------
+   1. PAGE FADE-IN
+---------------------------------------- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+main {
+    animation: fadeIn 0.7s ease-in;
+}
+
+
+/* ----------------------------------------
+   2. HERO CONTENT ENTRANCE
+---------------------------------------- */
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    animation: slideUp 0.8s ease-out;
+}
+
+
+/* ----------------------------------------
+   3. DISCOVERY CARD ENTRANCE
+---------------------------------------- */
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.discovery-card {
+    animation: cardEntrance 0.9s ease-out both;
+}
+
+.discovery-card:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.discovery-card:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+/* ----------------------------------------
+   4. BUTTON INTERACTIONS
+---------------------------------------- */
+
+.hero-button,
+form button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hero-button:hover,
+form button:hover {
+    box-shadow: 0 5px 14px rgba(16, 42, 67, 0.18);
+}
+
+
+/* ----------------------------------------
+   5. DISCOVERY CARD IMAGE EFFECT
+---------------------------------------- */
+
+.card-image {
+    transition: transform 0.4s ease;
+}
+
+.discovery-card:hover .card-image {
+    transform: scale(1.04);
+}
+
+
+/* ----------------------------------------
+   6. LOADING ANIMATION
+---------------------------------------- */
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+#apod-loading,
+#mars-loading,
+#earth-loading {
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+
+/* ----------------------------------------
+   7. REDUCED MOTION ACCESSIBILITY
+---------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
