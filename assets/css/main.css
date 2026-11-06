@@ -706,3 +706,107 @@ form button:hover {
     }
 
 }
+
+
+/* ========================================
+   MARS PHOTO GALLERY
+======================================== */
+
+.mars-gallery {
+    width: 90%;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.mars-gallery .section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.mars-gallery .section-heading h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.mars-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.mars-photo-card {
+    overflow: hidden;
+    border-radius: 14px;
+    background: #171923;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mars-photo-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.mars-photo-image {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background: #252833;
+}
+
+.mars-photo-information {
+    padding: 20px;
+}
+
+.mars-camera-name {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.mars-photo-date,
+.mars-rover-name {
+    color: #c4c6ce;
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+.mars-rover-name {
+    color: #e9825d;
+    font-weight: 600;
+}
+
+/* ========================================
+   MARS SEARCH NOTES
+======================================== */
+
+.search-note {
+    color: #c4c6ce;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+/* ========================================
+   RESPONSIVE MARS GALLERY
+======================================== */
+
+@media (max-width: 900px) {
+    .mars-photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .mars-photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mars-gallery {
+        width: 92%;
+    }
+
+    .mars-photo-image {
+        height: 220px;
+    }
+}

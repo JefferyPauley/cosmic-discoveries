@@ -201,6 +201,11 @@ if (apodForm) {
    3. MARS ROVER PHOTO SEARCH
 ======================================== */
 
+
+/* ========================================
+   3. MARS ROVER PHOTO SEARCH
+======================================== */
+
 const marsForm = document.getElementById("mars-search-form");
 
 if (marsForm) {
@@ -208,8 +213,11 @@ if (marsForm) {
     const marsDateInput = document.getElementById("mars-date");
     const marsGallery = document.getElementById("mars-photo-grid");
     const marsSearchButton = document.getElementById("mars-search-button");
+    // Clear the date when a different rover is selected
+roverSelect.addEventListener("change", function () {
+    marsDateInput.value = "";
+});
 
-    // Prevent visitors from selecting a future date.
     const today = new Date();
     const localToday = [
         today.getFullYear(),
@@ -219,80 +227,93 @@ if (marsForm) {
 
     marsDateInput.max = localToday;
 
-    // Listen for Mars search submissions.
     marsForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const selectedRover = roverSelect.value;
         const selectedDate = marsDateInput.value;
 
-        // Clear previous messages and photos.
         clearStatusMessages("mars");
         marsGallery.replaceChildren();
 
-        if (!selectedDate) {
-            showStatusMessage("mars", "error");
-            return;
-        }
+       // if (selectedDate && selectedDate > localToday) {
+           // showStatusMessage("mars", "error");
+            //return;
+        //}
 
-        // Show loading message.
         showStatusMessage("mars", "loading");
         marsSearchButton.disabled = true;
 
         try {
-            // Request photos from NASA.
-            const results = await getMarsPhotos(
-                selectedRover,
-                selectedDate
-            );
+            let allPhotos = [];
 
-            // Keep only photos from the exact selected date.
-            const matchingPhotos = results.filter(function (item) {
-                const photo = item.data?.[0];
+            // Retrieve up to three pages of NASA results.
+            for (let page = 1; page <= 3; page++) {
+                const results = await getMarsPhotos(
+                    selectedRover,
+                    selectedDate,
+                    page
+                );
 
-                return photo &&
-                    photo.date_created?.slice(0, 10) === selectedDate;
+                allPhotos = allPhotos.concat(results);
+
+                if (results.length < 100) {
+                    break;
+                }
+            }
+
+            // Keep valid photo records.
+            allPhotos = allPhotos.filter(function (item) {
+                return item.data?.[0]?.date_created &&
+                    item.links?.some(link =>
+                        link.rel === "preview" ||
+                        link.render === "image"
+                    );
             });
 
-            // Display newest photos first.
-            matchingPhotos.sort(function (a, b) {
+            // Sort newest first.
+            allPhotos.sort(function (a, b) {
                 return new Date(b.data[0].date_created) -
                     new Date(a.data[0].date_created);
             });
 
-            // Show a message if no matching photos were found.
-            if (matchingPhotos.length === 0) {
+            let photosToDisplay = allPhotos;
+
+            // Prefer exact-date matches when a date was selected.
+            if (selectedDate) {
+                const exactMatches = allPhotos.filter(function (item) {
+                    return item.data[0].date_created.slice(0, 10) === selectedDate;
+                });
+
+                if (exactMatches.length > 0) {
+                    photosToDisplay = exactMatches;
+                }
+            }
+
+            // Display up to 12 photos.
+            photosToDisplay = photosToDisplay.slice(0, 12);
+
+            if (photosToDisplay.length === 0) {
                 showStatusMessage("mars", "no-results");
                 return;
             }
 
-            // Create a gallery card for each photograph.
-            matchingPhotos.forEach(function (item) {
+            photosToDisplay.forEach(function (item) {
                 const photo = item.data[0];
 
                 const imageLink =
-                    item.links?.find(link => link.rel === "preview") ||
-                    item.links?.find(link =>
-                        link.render === "image" || link.rel === "alternate"
-                    ) ||
-                    item.links?.find(link => link.rel === "canonical");
+                    item.links.find(link => link.rel === "preview") ||
+                    item.links.find(link => link.render === "image");
 
-                if (!imageLink) {
-                    return;
-                }
-
-                // Create the photo card.
                 const card = document.createElement("article");
                 card.className = "mars-photo-card";
 
-                // Create the photograph.
                 const image = document.createElement("img");
                 image.className = "mars-photo-image";
                 image.src = imageLink.href;
                 image.alt = photo.title || "NASA Mars rover photograph";
                 image.loading = "lazy";
 
-                // Create the information section.
                 const information = document.createElement("div");
                 information.className = "mars-photo-information";
 
@@ -310,17 +331,27 @@ if (marsForm) {
                 roverName.className = "mars-rover-name";
                 roverName.textContent = "Rover: " + selectedRover;
 
-                // Add everything to the card.
                 information.append(title, photoDate, roverName);
                 card.append(image, information);
 
-                // Add the card to the gallery.
                 marsGallery.appendChild(card);
             });
 
-            // Handle results that did not contain usable image links.
-            if (marsGallery.children.length === 0) {
-                showStatusMessage("mars", "no-results");
+            // Explain when the exact date had no matching photos.
+            if (selectedDate) {
+                const hasExactMatch = photosToDisplay.some(function (item) {
+                    return item.data[0].date_created.slice(0, 10) === selectedDate;
+                });
+
+                if (!hasExactMatch) {
+                    const note = document.createElement("p");
+                    note.className = "search-note";
+                    note.textContent =
+                        "No photos were found for that exact date. " +
+                        "Here are other available photos from the selected year.";
+
+                    marsGallery.prepend(note);
+                }
             }
 
         } catch (error) {
@@ -332,6 +363,7 @@ if (marsForm) {
         }
     });
 }
+
 
 /* 7. EARTH OBSERVATION SEARCH FORM */
 const earthForm = document.getElementById("earth-search-form");
@@ -382,3 +414,53 @@ if (earthForm) {
         // NASA API connection will be added later.
     });
 }
+// MARS PHOTO LIGHTBOX
+// MARS PHOTO LIGHTBOX
+document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById("mars-lightbox");
+    const lightboxImage = document.getElementById("mars-lightbox-image");
+    const closeButton = document.getElementById("mars-lightbox-close");
+    const photoGrid = document.getElementById("mars-photo-grid");
+
+    if (!lightbox || !lightboxImage || !closeButton || !photoGrid) {
+        return;
+    }
+
+    // Open the lightbox when a gallery image is clicked
+    photoGrid.addEventListener("click", (event) => {
+        const clickedImage = event.target.closest(".mars-photo-image");
+
+        if (!clickedImage) {
+            return;
+        }
+
+        lightboxImage.src = clickedImage.src;
+        lightboxImage.alt = clickedImage.alt || "Mars rover photograph";
+
+        lightbox.classList.add("active");
+        document.body.classList.add("lightbox-open");
+    });
+
+    // Close the lightbox
+    function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
+        document.body.classList.remove("lightbox-open");
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+
+    // Close when clicking the dark background
+    lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Close with the Escape key
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+});
