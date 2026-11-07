@@ -195,6 +195,151 @@ if (apodForm) {
     });
 }
 
+
+// =================================
+// NASA APOD IMAGE GALLERY
+// =================================
+
+const gallery = document.getElementById("apod-gallery");
+
+if (gallery) {
+
+    const details = document.getElementById("apod-details");
+
+    const detailImage = document.getElementById("gallery-detail-image");
+    const detailTitle = document.getElementById("gallery-detail-title");
+    const detailDate = document.getElementById("gallery-detail-date");
+    const detailExplanation = document.getElementById("gallery-detail-explanation");
+    const detailCredit = document.getElementById("gallery-detail-credit");
+
+    const closeButton = document.getElementById("apod-close");
+
+    async function loadAPODGallery() {
+
+        gallery.innerHTML = "<p>Loading amazing space images...</p>";
+
+        try {
+
+            // Use your existing NASA API function.
+            // Request the latest 8 days.
+            const today = new Date();
+            const startDate = new Date(today);
+
+            startDate.setDate(today.getDate() - 7);
+
+            const formatDate = date =>
+                [
+                    date.getFullYear(),
+                    String(date.getMonth() + 1).padStart(2, "0"),
+                    String(date.getDate()).padStart(2, "0")
+                ].join("-");
+
+            const data = await getAPOD({
+                start_date: formatDate(startDate),
+                end_date: formatDate(today)
+            });
+
+            gallery.innerHTML = "";
+
+            // Sort newest first.
+            data.sort((a, b) =>
+                b.date.localeCompare(a.date)
+            );
+
+            data.forEach(item => {
+
+                // Only display image results.
+                if (item.media_type !== "image") {
+                    return;
+                }
+
+                const card = document.createElement("article");
+                card.className = "apod-card";
+                card.tabIndex = 0;
+                card.setAttribute("role", "button");
+                card.setAttribute(
+                    "aria-label",
+                    `View ${item.title}`
+                );
+
+                const image = document.createElement("img");
+                image.src = item.url;
+                image.alt = item.title;
+                image.loading = "lazy";
+
+                const info = document.createElement("div");
+                info.className = "apod-card-info";
+
+                const title = document.createElement("h3");
+                title.textContent = item.title;
+
+                const date = document.createElement("p");
+                date.textContent = item.date;
+
+                info.append(title, date);
+                card.append(image, info);
+
+                function showDetails() {
+
+                    detailImage.src = item.hdurl || item.url;
+                    detailImage.alt = item.title;
+
+                    detailTitle.textContent = item.title;
+                    detailDate.textContent = item.date;
+                    detailExplanation.textContent = item.explanation;
+
+                    detailCredit.textContent =
+                        "Image credit: " +
+                        (item.copyright || "NASA");
+
+                    details.hidden = false;
+
+                    details.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+                card.addEventListener("click", showDetails);
+
+                card.addEventListener("keydown", event => {
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+                        event.preventDefault();
+                        showDetails();
+                    }
+                });
+
+                gallery.appendChild(card);
+
+            });
+
+            if (!gallery.children.length) {
+                gallery.textContent =
+                    "No astronomy images were available for these dates.";
+            }
+
+        } catch (error) {
+
+            console.error("Gallery loading error:", error);
+
+            gallery.textContent =
+                "Unable to load NASA images. Please try again later.";
+
+        }
+    }
+
+    closeButton.addEventListener("click", () => {
+        details.hidden = true;
+    });
+
+    loadAPODGallery();
+
+}
+
+
 /* 6. MARS ROVER SEARCH FORM */
 
 /* ========================================
@@ -382,3 +527,4 @@ if (earthForm) {
         // NASA API connection will be added later.
     });
 }
+

@@ -62,6 +62,67 @@
             </p>
 
         </section>
+      <!-- MARS HERO SECTION -->
+<section class="mars-hero">
+    <div class="mars-hero-content">
+        <p class="mars-hero-label">THE RED PLANET</p>
+        <h1>Explore Mars</h1>
+        <p>
+            Discover the mysteries of our neighboring planet.
+            Explore real images captured by NASA's Mars rovers
+            and see the surface of Mars up close.
+        </p>
+        <a href="#mars-search-form" class="mars-hero-button">
+            Explore Mars Photos
+        </a>
+    </div>
+</section>
+
+<!-- MARS INTRODUCTION -->
+<section class="mars-introduction">
+    <h2>Discover the Red Planet</h2>
+
+    <p>
+        Mars is the fourth planet from the Sun and is often called
+        the Red Planet because of its reddish surface. With enormous
+        volcanoes, deep canyons, and evidence of ancient water,
+        Mars is one of the most fascinating places in our solar system.
+    </p>
+
+    <p>
+        NASA's robotic rovers explore the Martian surface, capturing
+        images and collecting information to help scientists understand
+        whether Mars could have supported life.
+    </p>
+</section>
+<!-- MARS FACTS SECTION -->
+<section class="mars-facts">
+    <h2>Fascinating Mars Facts</h2>
+
+    <div class="mars-facts-grid">
+
+        <div class="mars-fact-card">
+            <h3>4th Planet</h3>
+            <p>Mars is the fourth planet from the Sun.</p>
+        </div>
+
+        <div class="mars-fact-card">
+            <h3>Red Planet</h3>
+            <p>Iron-rich dust gives Mars its distinctive reddish color.</p>
+        </div>
+
+        <div class="mars-fact-card">
+            <h3>Two Moons</h3>
+            <p>Mars has two small moons named Phobos and Deimos.</p>
+        </div>
+
+        <div class="mars-fact-card">
+            <h3>Olympus Mons</h3>
+            <p>Mars is home to the largest known volcano in our solar system.</p>
+        </div>
+
+    </div>
+</section>
 
 
         <!-- MARS SEARCH FORM -->
@@ -72,10 +133,10 @@
                 Explore Mars Rover Photos
             </h2>
 
-            <p>
-                Choose a rover and date to explore photographs
-                captured on the surface of Mars.
-            </p>
+           <p>
+                Choose a rover to explore its latest photographs,
+                or select a date to search for images from that day.
+           </p>
 
             
 <form id="mars-search-form">
@@ -95,14 +156,13 @@
 
     <div class="form-group">
 
-        <label for="mars-date">Select a Date</label>
+        <label for="mars-date">Select a Date (Optional)</label>
 
         <input
             type="date"
             id="mars-date"
             name="earth-date"
-            required
-        >
+            >
 
     </div>
 
@@ -194,7 +254,16 @@
             </div>
 
         </section>
+<!-- MARS PHOTO LIGHTBOX -->
+<div id="mars-lightbox" class="mars-lightbox">
+    <button id="mars-lightbox-close"
+            class="mars-lightbox-close"
+            aria-label="Close image preview">
+        &times;
+    </button>
 
+    <img id="mars-lightbox-image" src="" alt="Enlarged Mars rover photograph">
+</div>
     </main>
 
 

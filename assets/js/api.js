@@ -45,9 +45,9 @@ async function getAPOD(date = "") {
    2. MARS ROVER PHOTO SEARCH
 ======================================== */
 
+
 async function getMarsPhotos(rover = "Curiosity", date = "", page = 1) {
 
-    // Make sure the selected rover is supported.
     const supportedRovers = [
         "Curiosity",
         "Perseverance",
@@ -59,7 +59,6 @@ async function getMarsPhotos(rover = "Curiosity", date = "", page = 1) {
         throw new Error("Invalid Mars rover selection.");
     }
 
-    // Build the NASA API search parameters.
     const params = new URLSearchParams({
         q: `${rover} Mars rover`,
         media_type: "image",
@@ -67,15 +66,13 @@ async function getMarsPhotos(rover = "Curiosity", date = "", page = 1) {
         page_size: "100"
     });
 
-    // If a date is selected, restrict the search to that year.
+    // Search a specific year when a date is selected.
     if (date) {
         const selectedYear = date.slice(0, 4);
-
         params.set("year_start", selectedYear);
         params.set("year_end", selectedYear);
     }
 
-    // Send the request to NASA's official image library.
     const endpoint =
         `https://images-api.nasa.gov/search?${params.toString()}`;
 
@@ -87,10 +84,13 @@ async function getMarsPhotos(rover = "Curiosity", date = "", page = 1) {
 
     const result = await response.json();
 
+    return result.collection.items || [];
+}
+
+
     // Return the collection containing the matching images.
     
     //console.log("NASA response:", result);
 //console.log("Top-level keys:", Object.keys(result));
 //console.log("Collection:", result.collection);
-  return result.collection.items;
-}
+  //return result.collection.items;
