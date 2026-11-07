@@ -251,35 +251,34 @@ section {
 }
 
 .card-image {
-    height: 180px;
+    height: 200px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.4s ease;
 }
 
-/* Temporary CSS backgrounds until image assets are added. */
+.discovery-card:hover .card-image {
+    transform: scale(1.06);
+}
+
+/* Discovery card images */
 
 .discovery-card:nth-child(1) .card-image {
-    background:
-        radial-gradient(circle at 65% 40%, #f9d78b 0 4%, transparent 5%),
-        radial-gradient(circle at 65% 40%, #7bb8e8 0 15%, transparent 16%),
-        linear-gradient(135deg, #091d3a, #315b8c);
+    background-image: url("https://images-assets.nasa.gov/image/PIA18033/PIA18033~orig.jpg");
 }
-
 .discovery-card:nth-child(2) .card-image {
-    background:
-        radial-gradient(circle at 70% 35%, #e8a36e 0 10%, transparent 11%),
-        linear-gradient(135deg, #5a2830, #c56e45, #e5b17b);
+    background-image: url("https://imageio.forbes.com/specials-images/imageserve/5e60cbfde1e617000758e516/0x0.jpg?fit=bounds&format=jpg&width=1200");
 }
 
 .discovery-card:nth-child(3) .card-image {
-    background:
-        radial-gradient(ellipse at 45% 55%, #55a879 0 18%, transparent 19%),
-        radial-gradient(ellipse at 65% 35%, #70b5dc 0 22%, transparent 23%),
-        linear-gradient(135deg, #0c4269, #4b9bc3);
+    background-image: url("https://svs.gsfc.nasa.gov/vis/a000000/a002900/a002915/bluemarble-1024.png");
 }
-
 .card-content {
+    min-height: 200px;
     padding: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .card-content h3 {
@@ -297,6 +296,7 @@ section {
 .card-content a {
     color: var(--blue);
     font-weight: 700;
+    margin-top: auto;
 }
 
 .card-content a:hover {
@@ -706,6 +706,35 @@ form button:hover {
     }
 
 }
+
+/* ----------------------------------------
+   EXTRA SMALL SCREEN ADJUSTMENTS
+---------------------------------------- */
+
+@media (max-width: 400px) {
+
+    .hero {
+        padding: 35px 18px;
+        min-height: 320px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        letter-spacing: -1px;
+    }
+
+    .hero-button {
+        padding: 11px 20px;
+        font-size: 0.9rem;
+    }
+
+    .card-content {
+        padding: 18px;
+    }
+
+}
+
+
 
 
 /* ========================================
