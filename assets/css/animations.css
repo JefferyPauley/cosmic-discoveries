@@ -140,3 +140,329 @@ form button:hover {
     }
 
 }
+
+
+/* ========================================
+   MARS GALLERY PHOTO ANIMATIONS
+======================================== */
+
+@keyframes marsPhotoReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mars-photo-card {
+    animation: marsPhotoReveal 0.6s ease both;
+}
+
+/* Stagger the gallery cards */
+
+.mars-photo-card:nth-child(3n + 1) {
+    animation-delay: 0.1s;
+}
+
+.mars-photo-card:nth-child(3n + 2) {
+    animation-delay: 0.2s;
+}
+
+.mars-photo-card:nth-child(3n + 3) {
+    animation-delay: 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mars-photo-card {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* MARS HERO SECTION */
+.mars-hero {
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background:
+        linear-gradient(rgba(10, 12, 25, 0.65), rgba(10, 12, 25, 0.85)),
+        url("https://images.unsplash.com/photo-1614728263952-84ea256f9679");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.mars-hero-content {
+    max-width: 750px;
+}
+
+.mars-hero-label {
+    color: #e9825d;
+    font-weight: bold;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.mars-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.mars-hero-content > p:not(.mars-hero-label) {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.mars-hero-button {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #e9825d;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.mars-hero-button:hover {
+    background: #d96843;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    .mars-hero {
+        min-height: 380px;
+    }
+
+    .mars-hero h1 {
+        font-size: 2.5rem;
+    }
+}
+/* SMOOTH SCROLLING */
+html {
+    scroll-behavior: smooth;
+}
+/* MARS SEARCH SECTION */
+#mars-search-form {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: center;
+    gap: 20px;
+    background: #171923;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+#mars-search-form label {
+    display: block;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+#mars-search-form select,
+#mars-search-form input {
+    width: 100%;
+    min-width: 180px;
+    padding: 13px;
+    border: 1px solid #444957;
+    border-radius: 8px;
+    background: #252833;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+#mars-search-button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #e9825d;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#mars-search-button:hover {
+    background: #d96843;
+}
+
+#mars-search-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    #mars-search-form {
+        width: 92%;
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #mars-search-form select,
+    #mars-search-form input {
+        min-width: 0;
+    }
+}
+/* MARS INTRODUCTION SECTION */
+.mars-introduction {
+    width: 85%;
+    max-width: 900px;
+    margin: 70px auto 50px;
+    padding: 35px;
+    text-align: center;
+    background: #171923;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+.mars-introduction h2 {
+    color: #e9825d;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.mars-introduction p {
+    color: #d0d2da;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.mars-introduction p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .mars-introduction {
+        width: 92%;
+        padding: 25px 20px;
+        margin: 45px auto;
+    }
+
+    .mars-introduction h2 {
+        font-size: 1.6rem;
+    }
+
+    .mars-introduction p {
+        font-size: 0.95rem;
+    }
+}
+/* MARS FACTS SECTION */
+.mars-facts {
+    width: 90%;
+    max-width: 1200px;
+    margin: 70px auto;
+    text-align: center;
+}
+
+.mars-facts h2 {
+    color: #e9825d;
+    font-size: 2rem;
+    margin-bottom: 35px;
+}
+
+.mars-facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.mars-fact-card {
+    padding: 30px 20px;
+    background: #171923;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mars-fact-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mars-fact-card h3 {
+    color: #e9825d;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.mars-fact-card p {
+    color: #d0d2da;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .mars-facts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .mars-facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mars-facts h2 {
+        font-size: 1.7rem;
+    }
+}
+/* MARS PHOTO LIGHTBOX */
+.mars-lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.mars-lightbox.active {
+    display: flex;
+}
+
+.mars-lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mars-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.mars-lightbox-close:hover {
+    color: #e9825d;
+}
+/* PREVENT BACKGROUND SCROLLING */
+body.lightbox-open {
+    overflow: hidden;
+}

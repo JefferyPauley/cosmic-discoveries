@@ -251,35 +251,34 @@ section {
 }
 
 .card-image {
-    height: 180px;
+    height: 200px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.4s ease;
 }
 
-/* Temporary CSS backgrounds until image assets are added. */
+.discovery-card:hover .card-image {
+    transform: scale(1.06);
+}
+
+/* Discovery card images */
 
 .discovery-card:nth-child(1) .card-image {
-    background:
-        radial-gradient(circle at 65% 40%, #f9d78b 0 4%, transparent 5%),
-        radial-gradient(circle at 65% 40%, #7bb8e8 0 15%, transparent 16%),
-        linear-gradient(135deg, #091d3a, #315b8c);
+    background-image: url("https://images-assets.nasa.gov/image/PIA18033/PIA18033~orig.jpg");
 }
-
 .discovery-card:nth-child(2) .card-image {
-    background:
-        radial-gradient(circle at 70% 35%, #e8a36e 0 10%, transparent 11%),
-        linear-gradient(135deg, #5a2830, #c56e45, #e5b17b);
+    background-image: url("https://imageio.forbes.com/specials-images/imageserve/5e60cbfde1e617000758e516/0x0.jpg?fit=bounds&format=jpg&width=1200");
 }
 
 .discovery-card:nth-child(3) .card-image {
-    background:
-        radial-gradient(ellipse at 45% 55%, #55a879 0 18%, transparent 19%),
-        radial-gradient(ellipse at 65% 35%, #70b5dc 0 22%, transparent 23%),
-        linear-gradient(135deg, #0c4269, #4b9bc3);
+    background-image: url("https://svs.gsfc.nasa.gov/vis/a000000/a002900/a002915/bluemarble-1024.png");
 }
-
 .card-content {
+    min-height: 200px;
     padding: 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .card-content h3 {
@@ -297,6 +296,7 @@ section {
 .card-content a {
     color: var(--blue);
     font-weight: 700;
+    margin-top: auto;
 }
 
 .card-content a:hover {
@@ -809,134 +809,4 @@ form button:hover {
     .mars-photo-image {
         height: 220px;
     }
-}
-
-
-/* CONSTELLATIONS GALLERY */
-
-.constellations {
-    padding: 70px 8%;
-    background: #080d20;
-    color: white;
-}
-
-.constellations .section-heading {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.constellations .section-heading h2 {
-    font-size: 2.2rem;
-    margin-bottom: 12px;
-}
-
-.constellations .section-heading p {
-    color: #c5cbe0;
-}
-
-.constellation-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-}
-
-.constellation-card {
-    background: #111a35;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.constellation-card:hover {
-    transform: translateY(-8px);
-}
-
-.constellation-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-.constellation-content {
-    padding: 20px;
-}
-
-.constellation-content h3 {
-    color: #8ebaff;
-    margin-bottom: 10px;
-}
-
-.constellation-content p {
-    color: #d0d6e8;
-    line-height: 1.6;
-}
-
-@media (max-width: 900px) {
-    .constellation-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 550px) {
-    .constellation-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.section-heading h2 {
-    color: #e9825d;
-}
-.about p {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-.site-footer {
-    background: linear-gradient(
-        135deg,
-        #080d20,
-        #171334,
-        #080d20
-    );
-
-    color: #c8c9e8;
-    text-align: center;
-    padding: 40px 20px;
-    margin-top: 60px;
-
-    border-top: 2px solid #7865c9;
-
-    box-shadow: 0 -5px 25px rgba(120, 101, 201, 0.2);
-}
-
-.site-footer h3 {
-    color: #c5aaff;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 12px rgba(174, 139, 255, 0.7);
-}
-
-.site-footer p {
-    color: #b8c5e8;
-    font-size: 0.95rem;
-}
-
-.footer-divider {
-    width: 120px;
-    height: 2px;
-    background: #9b7cff;
-    margin: 20px auto;
-    box-shadow: 0 0 10px #9b7cff;
-}
-
-.site-footer small {
-    display: block;
-    color: #9299b8;
-    margin-bottom: 12px;
-}
-
-.footer-tagline {
-    color: #b99aff;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
 }
