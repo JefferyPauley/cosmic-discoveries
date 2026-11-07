@@ -707,35 +707,6 @@ form button:hover {
 
 }
 
-/* ----------------------------------------
-   EXTRA SMALL SCREEN ADJUSTMENTS
----------------------------------------- */
-
-@media (max-width: 400px) {
-
-    .hero {
-        padding: 35px 18px;
-        min-height: 320px;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-        letter-spacing: -1px;
-    }
-
-    .hero-button {
-        padding: 11px 20px;
-        font-size: 0.9rem;
-    }
-
-    .card-content {
-        padding: 18px;
-    }
-
-}
-
-
-
 
 /* ========================================
    MARS PHOTO GALLERY

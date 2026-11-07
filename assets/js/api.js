@@ -94,4 +94,3 @@ async function getMarsPhotos(rover = "Curiosity", date = "", page = 1) {
 //console.log("Top-level keys:", Object.keys(result));
 //console.log("Collection:", result.collection);
   //return result.collection.items;
-
